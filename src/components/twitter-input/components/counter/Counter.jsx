@@ -1,24 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
+import ProgressRing from "../../../../ui/progress-ring";
 
 function Counter({ maxCount, count }) {
-  const message = `You inserted ${count} characters on ${maxCount}`;
-
   const percentage = count / maxCount;
-  const isWarning = percentage > 0.8 && percentage < 1;
-  const isNotAllowed = percentage > 1;
+
+  let status = "";
+  let content;
+  if (percentage > 0.8 && percentage < 1) {
+    status = "warning";
+    content = maxCount - count;
+  }
+  if (percentage > 1) {
+    status = "danger";
+    content = count - maxCount;
+  }
 
   return (
     <div id="counter">
-      <p>{message}</p>
-      {isWarning && (
-        <p>
-          show warning with remaining allowed characters is {maxCount - count}
-        </p>
-      )}
-      {isNotAllowed && (
-        <p>show alert with over-typed characters is {count - maxCount}</p>
-      )}
+      <ProgressRing content={content} progress={percentage} status={status} />
     </div>
   );
 }
