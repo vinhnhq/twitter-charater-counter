@@ -1,0 +1,21 @@
+$primary-color: #1ba1f2;
+
+.root {
+  padding: 0 30px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bolder;
+  font-size: 1rem;
+  background-color: $primary-color;
+  border-radius: 30px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.4s ease 0s;
+  outline: none;
+  box-shadow: none;
+}
+
+.root:hover {
+  background-color: darken($color: $primary-color, $amount: 10%);
+  transition: all 0.4s ease 0s;
+}

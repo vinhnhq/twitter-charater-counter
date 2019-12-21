@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import ProgressRing from "../../../../ui/progress-ring";
 
-function Counter({ maxCount, count }) {
+const Counter = ({ maxCount, count }) => {
   const percentage = count / maxCount;
 
   let status = "";
@@ -11,21 +11,19 @@ function Counter({ maxCount, count }) {
     status = "warning";
     content = maxCount - count;
   }
-  if (percentage > 1) {
+  if (percentage >= 1) {
     status = "danger";
     content = count - maxCount;
   }
 
   return (
-    <div id="counter">
-      <ProgressRing content={content} progress={percentage} status={status} />
-    </div>
+    <ProgressRing content={content} progress={percentage} status={status} />
   );
-}
+};
 
 Counter.propTypes = {
   maxCount: PropTypes.number,
   count: PropTypes.number
 };
 
-export default Counter;
+export default React.memo(Counter);

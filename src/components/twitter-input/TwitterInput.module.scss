@@ -1,0 +1,19 @@
+.root {
+  margin: 0 auto;
+  max-width: 600px;
+  display: block;
+  padding: 1em;
+  border-bottom: solid 1px lighten($color: lightgrey, $amount: 5%);
+}
+
+.handler {
+  margin-top: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.button {
+  height: 40px;
+  margin-left: 1em;
+}

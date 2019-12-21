@@ -1,33 +1,42 @@
+$primary-color: #1ba1f2;
+$warning-color: #ffad1d;
+$danger-color: #e0235e;
+$white-color: #fff;
+$background-color: #e2e2e2;
+
+.wrapper {
+  height: 34px;
+  width: 34px;
+}
+
 .circularChart {
-  display: block;
-  max-width: 2em;
-  max-height: 2em;
-  stroke: #3c9ee5;
-}
+  height: 100%;
+  width: 100%;
+  stroke: $primary-color;
 
-.circularChart.warning {
-  stroke: #ff9f00;
-}
+  &.warning {
+    stroke: $warning-color;
+  }
 
-.circularChart.danger {
-  stroke: #cb4154;
+  &.danger {
+    stroke: $danger-color;
+  }
 }
 
 .circleBg {
   fill: none;
-  stroke: #eee;
-  stroke-width: 3.8;
+  stroke-width: 2;
+  stroke: $background-color;
 }
 
 .circle {
   fill: none;
-  stroke-width: 2.8;
+  stroke-width: 2;
   stroke-linecap: round;
 }
 
-.percentage {
-  fill: #666;
-  font-family: sans-serif;
-  font-size: 0.5em;
+.content {
+  font-size: 1em;
+  font-weight: lighter;
   text-anchor: middle;
 }

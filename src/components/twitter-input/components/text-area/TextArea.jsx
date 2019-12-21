@@ -1,22 +1,33 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Editor, EditorState, convertToRaw } from "draft-js";
+import "draft-js/dist/Draft.css";
 
 function TextArea({ onChange }) {
-  const onChangeHandler = event =>
+  const [editorState, setEditorState] = React.useState(
+    EditorState.createEmpty()
+  );
+
+  const onChangeHandler = state => {
+    const contentState = state.getCurrentContent();
+    const blocks = convertToRaw(contentState).blocks;
+    const rawValue = blocks
+      .map(block => (!block.text.trim() && "\n") || block.text)
+      .join("\n");
+
+    setEditorState(state);
     onChange({
-      count: event.target.value.length,
-      value: event.target.value
+      count: rawValue.length,
+      value: rawValue
     });
+  };
 
   return (
-    <div id="textArea">
-      <textarea
-        rows="15"
-        cols="150"
-        placeholder="What's happening?"
-        onChange={onChangeHandler}
-      ></textarea>
-    </div>
+    <Editor
+      editorState={editorState}
+      onChange={onChangeHandler}
+      placeholder="What's happening?"
+    />
   );
 }
 
@@ -24,4 +35,4 @@ TextArea.propTypes = {
   onChange: PropTypes.func
 };
 
-export default TextArea;
+export default React.memo(TextArea);
