@@ -44,4 +44,4 @@ ProgressRing.propTypes = {
   status: PropTypes.oneOf(["", "warning", "danger"])
 };
 
-export default ProgressRing;
+export default React.memo(ProgressRing);
