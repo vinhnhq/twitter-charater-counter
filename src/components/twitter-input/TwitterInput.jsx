@@ -37,10 +37,16 @@ function TwitterInput() {
   React.useEffect(() => editorRef.current.focus(), []);
 
   function overTypedStrategy(contentBlock, callback, contentState) {
-    const length = contentBlock.getText().length;
+    const contentLength = contentState.getPlainText().length;
+    if (contentLength <= MAX_COUNT) return;
 
-    if (length >= MAX_COUNT) {
-      callback(MAX_COUNT, length);
+    const blockLength = contentBlock.getText().length;
+    const diff = contentLength - blockLength;
+
+    if (diff === -1) {
+      callback(MAX_COUNT, blockLength);
+    } else {
+      callback(0, blockLength);
     }
   }
 
